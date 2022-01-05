@@ -25,16 +25,14 @@
                 <th> 
                   <button class="btn btn-warning">Editar</button>
 
-                  <form method="POST" action="/categories/delete" style="display: inline;">
+                  <form method="POST" action="/categories/delete" style="display: inline;" onsubmit="confirmarExclusao(event, this)">
                     <input type="hidden" name="id" value="<%= category.id %>">
                     <button class="btn btn-danger">Excluir</button>   
                   </form>
 
                 </th>
               </tr>
-            <% }) %>  
-                
-                        
+            <% }) %>        
           
         </tbody>
       </table>
@@ -42,3 +40,12 @@
 
 </body>
 <%- include ('../../partials/footer.ejs'); %>
+<script>
+  function confirmarExclusao(event, form) {
+    event.preventDefault();
+    let decision = confirm("Confirmar a exclusão da categoria?")
+    if (decision) {
+      form.submit();
+    }
+  }
+</script>
